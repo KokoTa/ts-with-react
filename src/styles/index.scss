@@ -1,0 +1,5 @@
+// 下划线开头的 scss 会告知 scss 引擎不编译他们，只能引用他们，引用的时候省略下划线
+@import 'variables.scss';
+@import 'normalize.scss';
+@import 'mixins.scss';
+@import 'functions.scss';
