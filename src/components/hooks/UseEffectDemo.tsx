@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-22 16:20:59
- * @LastEditTime: 2021-04-23 15:59:11
+ * @LastEditTime: 2021-04-25 10:13:35
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/hooks/UseEffectDemo.tsx
@@ -44,7 +44,7 @@ const UseEffectDemo: React.FC = () => {
   return (<>
     <button onClick={() => setLike(like + 1)}>点击了 {like} 次</button>
     <p>x:{position.x} y: {position.y}</p>
-    { loading ? <p>🐶 读取中...</p> : <img src={data && data.message} alt="dog" />}
+    { loading ? <p>🐶 读取中...</p> : <img style={{ width: '100px' }} src={data && data.message} alt="dog" />}
   </>)
 }
 
