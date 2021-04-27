@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-25 18:03:44
- * @LastEditTime: 2021-04-26 10:42:13
+ * @LastEditTime: 2021-04-27 13:28:17
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/menu.tsx
@@ -52,7 +52,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
   })
 
   return (
-    <ul className={classes} style={style}>
+    <ul className={classes} style={style} data-testid="test-menu">
       <MenuContext.Provider value={menuContext}>
         {children}
       </MenuContext.Provider>

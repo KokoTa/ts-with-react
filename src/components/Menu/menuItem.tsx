@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-25 18:03:48
- * @LastEditTime: 2021-04-26 10:31:25
+ * @LastEditTime: 2021-04-27 11:40:59
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/menuItem.tsx
@@ -11,14 +11,14 @@ import classNames from "classnames";
 import { useContext } from "react";
 import { MenuContext } from "./menu";
 
-export interface MenuItemProps {
+export interface IMenuItemProps {
   index: number;
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties
 }
 
-const MenuItem: React.FC<MenuItemProps> = (props) => {
+const MenuItem: React.FC<IMenuItemProps> = (props) => {
   const {
     index,
     disabled,
