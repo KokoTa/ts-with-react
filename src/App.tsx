@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-04-25 14:44:24
+ * @LastEditTime: 2021-04-26 15:37:53
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -12,6 +12,8 @@ import UseEffectDemo from './components/hooks/UseEffectDemo'
 import UseRefDemo from './components/hooks/UseRefDemo'
 import UseContextDemo from './components/hooks/UseContextDemo'
 import Button, { ButtonSize, ButtonType } from './components/Button/button';
+import Menu from './components/Menu/menu';
+import MenuItem from './components/Menu/menuItem';
 
 function App() {
 
@@ -42,6 +44,19 @@ function App() {
         <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>Danger Small</Button>
         <Button btnType={ButtonType.Link} href="http://baidu.com">Link</Button>
         <Button btnType={ButtonType.Link} href="http://baidu.com" disabled={true}>Link Disabled</Button>
+
+        <h1>Menu</h1>
+        <Menu mode="vertical" defaultIndex={0} onSelect={(index: number) => console.log(index)}>
+          <MenuItem index={0}>
+            link1
+          </MenuItem>
+          <MenuItem index={1} disabled>
+            link2
+          </MenuItem>
+          <MenuItem index={2}>
+            link3
+          </MenuItem>
+        </Menu>
       </header>
     </div>
   );

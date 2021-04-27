@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-22 16:20:59
- * @LastEditTime: 2021-04-25 10:13:35
+ * @LastEditTime: 2021-04-26 10:49:41
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/hooks/UseEffectDemo.tsx
@@ -15,9 +15,9 @@ const UseEffectDemo: React.FC = () => {
   // const [position, setPosition] = useState({ x: 0, y: 0 })
 
   // 每次渲染都会触发，即只要有视图操作就会触发
-  useEffect(() => {
-    console.log('触发')
-  })
+  // useEffect(() => {
+  //   console.log('触发')
+  // })
 
   // 根据 like 值进行触发
   useEffect(() => {
