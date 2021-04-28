@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-27 10:23:03
- * @LastEditTime: 2021-04-27 17:35:37
+ * @LastEditTime: 2021-04-28 09:52:55
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/menu.test.tsx
@@ -14,13 +14,13 @@ import MenuItem from "./menuItem"
 const MenuTest: React.FC<IMenuProps> = (props) => {
   return (
     <Menu {...props}>
-      <MenuItem index={0}>
+      <MenuItem>
         active
       </MenuItem>
-      <MenuItem index={1} disabled>
+      <MenuItem disabled>
         disabled
       </MenuItem>
-      <MenuItem index={2}>
+      <MenuItem>
         link3
       </MenuItem>
     </Menu>

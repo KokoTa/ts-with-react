@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-04-26 15:37:53
+ * @LastEditTime: 2021-04-28 10:35:32
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -47,13 +47,13 @@ function App() {
 
         <h1>Menu</h1>
         <Menu mode="vertical" defaultIndex={0} onSelect={(index: number) => console.log(index)}>
-          <MenuItem index={0}>
+          <MenuItem index={10}>
             link1
           </MenuItem>
-          <MenuItem index={1} disabled>
+          <MenuItem disabled>
             link2
           </MenuItem>
-          <MenuItem index={2}>
+          <MenuItem>
             link3
           </MenuItem>
         </Menu>

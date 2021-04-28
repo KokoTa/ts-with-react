@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-25 18:03:48
- * @LastEditTime: 2021-04-27 11:40:59
+ * @LastEditTime: 2021-04-28 09:50:09
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/menuItem.tsx
@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { MenuContext } from "./menu";
 
 export interface IMenuItemProps {
-  index: number;
+  index?: number;
   disabled?: boolean;
   className?: string;
   style?: React.CSSProperties
@@ -29,7 +29,7 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
 
   const menuContext = useContext(MenuContext)
   const handleClick = () => {
-    if (menuContext.onSelect && !disabled) {
+    if (menuContext.onSelect && !disabled && typeof index === 'number') {
       menuContext.onSelect(index)
     }
   }
@@ -45,5 +45,7 @@ const MenuItem: React.FC<IMenuItemProps> = (props) => {
     </li>
   )
 }
+
+MenuItem.displayName = 'menu-item'
 
 export default MenuItem
