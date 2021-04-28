@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-04-28 10:35:32
+ * @LastEditTime: 2021-04-28 16:23:09
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -14,6 +14,7 @@ import UseContextDemo from './components/hooks/UseContextDemo'
 import Button, { ButtonSize, ButtonType } from './components/Button/button';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
+import SubMenu from './components/Menu/subMenu';
 
 function App() {
 
@@ -46,16 +47,21 @@ function App() {
         <Button btnType={ButtonType.Link} href="http://baidu.com" disabled={true}>Link Disabled</Button>
 
         <h1>Menu</h1>
-        <Menu mode="vertical" defaultIndex={0} onSelect={(index: number) => console.log(index)}>
-          <MenuItem index={10}>
+        <Menu defaultIndex="0" onSelect={(index: string) => console.log(index)} mode="vertical" defaultOpenSubMenus={["2"]}>
+          <MenuItem>
             link1
           </MenuItem>
           <MenuItem disabled>
             link2
           </MenuItem>
-          <MenuItem>
-            link3
-          </MenuItem>
+          <SubMenu title="dropdown">
+            <MenuItem>
+              dropdown1
+            </MenuItem>
+            <MenuItem>
+              dropdown2
+            </MenuItem>
+          </SubMenu>
         </Menu>
       </header>
     </div>
