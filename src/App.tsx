@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-04-29 10:37:58
+ * @LastEditTime: 2021-04-29 16:02:55
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -15,6 +15,7 @@ import Button, { ButtonSize, ButtonType } from './components/Button/button';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
+import Icon from './components/Icon/icon';
 
 function App() {
 
@@ -63,6 +64,9 @@ function App() {
             </MenuItem>
           </SubMenu>
         </Menu>
+
+        <h1>Icon</h1>
+        <Icon icon="coffee" theme="primary" size="10x"></Icon>
       </header>
     </div>
   );
