@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-28 10:54:31
- * @LastEditTime: 2021-04-28 16:22:18
+ * @LastEditTime: 2021-04-30 14:48:07
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/subMenu.tsx
@@ -9,6 +9,8 @@
 
 import classNames from "classnames"
 import React, { useContext, useState } from "react"
+import { CSSTransition } from "react-transition-group"
+import Icon from "../Icon/icon"
 import { MenuContext } from "./menu"
 import { IMenuItemProps } from "./menuItem"
 
@@ -23,7 +25,10 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
   const openedSubMenus = context.defaultOpenSubMenus as Array<String> // 是否默认显示子面板
   const isOpened = (index && context.mode === 'vertical') ? openedSubMenus.includes(index) : false
   const [menuOpen, setMenuOpen] = useState(isOpened)
-  const classes = classNames('menu-item submenu', className)
+  const classes = classNames('menu-item submenu', className, {
+    'submenu-vertical-icon': context.mode === 'vertical',
+    'submenu-vertical-icon-opened': menuOpen
+  })
 
   // 控制子面板显示和隐藏
   const handleClick = (e: React.MouseEvent) => {
@@ -48,7 +53,7 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
 
   // 渲染子面板
   const renderChildren = () => {
-    const classes = classNames('submenu-item', { 'submenu-opened': menuOpen })
+    const classes = classNames('submenu-item')
     const childrenElement =  React.Children.map(children, (child, i) => {
       const childElement = child as React.FunctionComponentElement<IMenuItemProps>
       const { displayName } = childElement.type
@@ -59,15 +64,20 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
       }
     })
     return (
-      <ul className={classes}>
-        {childrenElement}
-      </ul>
+      <CSSTransition in={menuOpen} timeout={300} classNames="zoom-in-top" appear unmountOnExit>
+        <ul className={classes}>
+          {childrenElement}
+        </ul>
+      </CSSTransition>
     )
   }
 
   return (
     <li className={classes} {...subMenuHandleEvent}>
-      <div className="submenu-title" {...subMenuTitleHandleEvent}>{title}</div>
+      <div className="submenu-title" {...subMenuTitleHandleEvent}>
+        {title}
+        <Icon icon="angle-down" className="arrow-icon"></Icon>
+      </div>
       {renderChildren()}
     </li>
   )

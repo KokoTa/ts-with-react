@@ -1,0 +1,32 @@
+.zoom-in-top-enter {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.zoom-in-top-enter-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+  transform-origin: center top;
+}
+
+.zoom-in-top-appear {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.zoom-in-top-appear-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+  transform-origin: center top;
+}
+
+.zoom-in-top-exit {
+  opacity: 1;
+  transform: scaleY(1);
+}
+.zoom-in-top-exit-active {
+  opacity: 0;
+  transform: scaleY(0);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1) 100ms;
+  transform-origin: center top;
+}

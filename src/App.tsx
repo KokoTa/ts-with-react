@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-04-29 16:02:55
+ * @LastEditTime: 2021-04-30 14:33:37
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -48,7 +48,7 @@ function App() {
         <Button btnType={ButtonType.Link} href="http://baidu.com" disabled={true}>Link Disabled</Button>
 
         <h1>Menu</h1>
-        <Menu defaultIndex="0" onSelect={(index: string) => console.log(index)} mode="vertical" defaultOpenSubMenus={["2"]}>
+        <Menu defaultIndex="0" onSelect={(index: string) => console.log(index)} mode="horizontal" defaultOpenSubMenus={["2"]}>
           <MenuItem>
             link1
           </MenuItem>
