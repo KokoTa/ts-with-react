@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-04-30 14:33:37
+ * @LastEditTime: 2021-05-06 10:44:39
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -16,10 +16,12 @@ import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
 import Icon from './components/Icon/icon';
+import Transition from './components/Transition/transition';
 
 function App() {
 
   const [showUseEffectDemo, setShowUseEffectDemo] = useState(true)
+  const [showButton, setShowButton] = useState(true)
 
   return (
     <div>
@@ -48,7 +50,7 @@ function App() {
         <Button btnType={ButtonType.Link} href="http://baidu.com" disabled={true}>Link Disabled</Button>
 
         <h1>Menu</h1>
-        <Menu defaultIndex="0" onSelect={(index: string) => console.log(index)} mode="horizontal" defaultOpenSubMenus={["2"]}>
+        <Menu defaultIndex="0" onSelect={(index: string) => console.log(index)} mode="vertical" defaultOpenSubMenus={["2"]}>
           <MenuItem>
             link1
           </MenuItem>
@@ -67,6 +69,14 @@ function App() {
 
         <h1>Icon</h1>
         <Icon icon="coffee" theme="primary" size="10x"></Icon>
+
+        <h1>Transition</h1>
+        <Button onClick={() => { setShowButton(!showButton) }}>Toggle Button</Button>
+        <Transition in={showButton} timeout={300} animation="zoom-in-left" wrapper={true}>
+          <Button>Hello</Button>
+        </Transition>
+
+        <h1>Other</h1>
       </header>
     </div>
   );

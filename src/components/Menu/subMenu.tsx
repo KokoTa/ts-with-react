@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-28 10:54:31
- * @LastEditTime: 2021-04-30 14:48:07
+ * @LastEditTime: 2021-04-30 17:52:31
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/subMenu.tsx
@@ -9,8 +9,9 @@
 
 import classNames from "classnames"
 import React, { useContext, useState } from "react"
-import { CSSTransition } from "react-transition-group"
+// import { CSSTransition } from "react-transition-group"
 import Icon from "../Icon/icon"
+import Transition from "../Transition/transition"
 import { MenuContext } from "./menu"
 import { IMenuItemProps } from "./menuItem"
 
@@ -64,11 +65,13 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
       }
     })
     return (
-      <CSSTransition in={menuOpen} timeout={300} classNames="zoom-in-top" appear unmountOnExit>
+      // <CSSTransition in={menuOpen} timeout={300} classNames="zoom-in-top" appear unmountOnExit>
+      <Transition in={menuOpen} timeout={300} animation="zoom-in-top">
         <ul className={classes}>
           {childrenElement}
         </ul>
-      </CSSTransition>
+      </Transition>
+      // </CSSTransition>
     )
   }
 
