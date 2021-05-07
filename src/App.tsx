@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-05-06 10:44:39
+ * @LastEditTime: 2021-05-06 16:27:08
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -11,7 +11,7 @@ import UseStateDemo from './components/hooks/UseStateDemo'
 import UseEffectDemo from './components/hooks/UseEffectDemo'
 import UseRefDemo from './components/hooks/UseRefDemo'
 import UseContextDemo from './components/hooks/UseContextDemo'
-import Button, { ButtonSize, ButtonType } from './components/Button/button';
+import Button from './components/Button/button';
 import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
@@ -44,10 +44,10 @@ function App() {
         <h1>Button</h1>
         <Button onClick={(() => console.log('click'))}>Button</Button>
         <Button disabled={true}>Disabled</Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>Primary Large</Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>Danger Small</Button>
-        <Button btnType={ButtonType.Link} href="http://baidu.com">Link</Button>
-        <Button btnType={ButtonType.Link} href="http://baidu.com" disabled={true}>Link Disabled</Button>
+        <Button btnType='primary' size='lg'>Primary Large</Button>
+        <Button btnType='danger' size='sm'>Danger Small</Button>
+        <Button btnType='link' href="http://baidu.com">Link</Button>
+        <Button btnType='link' href="http://baidu.com" disabled={true}>Link Disabled</Button>
 
         <h1>Menu</h1>
         <Menu defaultIndex="0" onSelect={(index: string) => console.log(index)} mode="vertical" defaultOpenSubMenus={["2"]}>

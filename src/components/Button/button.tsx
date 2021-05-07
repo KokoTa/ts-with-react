@@ -4,28 +4,35 @@ import React from "react";
 /*
  * @Author: KokoTa
  * @Date: 2021-04-23 18:19:21
- * @LastEditTime: 2021-04-25 14:41:28
+ * @LastEditTime: 2021-05-07 15:47:16
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Button/button.tsx
  */
-export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm'
-}
+type ButtonSize = 'lg' | 'sm'
 
-export enum ButtonType {
-  Primary = 'primary',
-  Default = 'default',
-  Danger = 'danger',
-  Link = 'link'
-}
+type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 
 interface BaseButtonProps {
+  /**
+   * 类名
+   */
   className?: string;
+  /**
+   * 是否禁用
+   */
   disabled?: boolean;
+  /**
+   * 尺寸
+   */
   size?: ButtonSize;
+  /**
+   * 类型
+   */
   btnType?: ButtonType;
+  /**
+   * 链接地址
+   */
   href?: string;
   children: React.ReactNode;
 }
@@ -37,7 +44,10 @@ type AnchorButtonProps = BaseButtonProps & React.AnchorHTMLAttributes<HTMLElemen
 // 这里 Partial 把并集里的属性都设置为可选
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
 
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * 按钮
+ */
+export const Button: React.FC<ButtonProps> = (props) => {
   const {
     className,
     btnType,
@@ -52,10 +62,10 @@ const Button: React.FC<ButtonProps> = (props) => {
   const classes = classNames('btn', className, {
     [`btn-${size}`]: size,
     [`btn-${btnType}`]: btnType,
-    'disabled': (btnType === ButtonType.Link) && disabled // a 链接没有 disabled，需要特殊判断
+    'disabled': (btnType === 'link') && disabled // a 链接没有 disabled，需要特殊判断
   })
 
-  if (btnType === ButtonType.Link && href) {
+  if (btnType === 'link' && href) {
     return (
       <a href={href} className={classes} {...resetProps}>{children}</a>
     )
@@ -68,7 +78,7 @@ const Button: React.FC<ButtonProps> = (props) => {
 
 Button.defaultProps = {
   disabled: false,
-  btnType: ButtonType.Default
+  btnType: 'default'
 }
 
 export default Button
