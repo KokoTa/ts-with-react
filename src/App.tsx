@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-05-06 16:27:08
+ * @LastEditTime: 2021-05-10 15:10:14
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -17,6 +17,7 @@ import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
 import Icon from './components/Icon/icon';
 import Transition from './components/Transition/transition';
+import Input from './components/Input/input';
 
 function App() {
 
@@ -39,7 +40,7 @@ function App() {
         <h1>useContext demo</h1>
         <UseContextDemo></UseContextDemo>
 
-        <hr/>
+        <hr />
 
         <h1>Button</h1>
         <Button onClick={(() => console.log('click'))}>Button</Button>
@@ -76,7 +77,8 @@ function App() {
           <Button>Hello</Button>
         </Transition>
 
-        <h1>Other</h1>
+        <h1>Input</h1>
+        <Input placeholder="hello" prepend="hello" append="world"></Input>
       </header>
     </div>
   );

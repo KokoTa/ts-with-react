@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-05-06 14:00:37
- * @LastEditTime: 2021-05-07 14:43:53
+ * @LastEditTime: 2021-05-10 10:28:05
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/.storybook/preview.js
@@ -16,6 +16,7 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+    expanded: true
   },
 }
 
