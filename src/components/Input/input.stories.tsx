@@ -1,18 +1,10 @@
 /*
  * @Author: KokoTa
- * @Date: 2021-05-10 15:01:27
- * @LastEditTime: 2021-05-10 16:11:09
- * @LastEditors: KokoTa
- * @Description:
- * @FilePath: /ts-with-react/src/components/Input/input.stories.tsx
- */
-/*
- * @Author: KokoTa
  * @Date: 2021-05-06 15:21:49
- * @LastEditTime: 2021-05-10 10:50:13
+ * @LastEditTime: 2021-05-11 09:39:57
  * @LastEditors: KokoTa
  * @Description: 
- * @FilePath: /ts-with-react/src/components/Button/button.stories.tsx
+ * @FilePath: /ts-with-react/src/components/Input/input.stories.tsx
  */
 
 import { Meta, Story } from "@storybook/react";
@@ -41,7 +33,7 @@ PrependInput.args = {
 
 export const AppendInput = Template.bind({})
 AppendInput.args = {
-  append: '.com'
+  append: (<span>.com</span>)
 }
 
 export const DisabledInput = Template.bind({})
@@ -51,9 +43,9 @@ DisabledInput.args = {
 
 // 受控组件测试
 // https://zh-hans.reactjs.org/docs/uncontrolled-components.html#default-values
-export const ControllerInput: Story<InputProps> = () => {
+export const ControllerInput: Story<InputProps> = (props) => {
   const [value, setValue] = useState('')
-  return <Input value={value} defaultValue={value} onChange={(e) => {
+  return <Input {...props} value={value} defaultValue={value} onChange={(e) => {
     setValue(e.target.value)
     console.log(value)
   }}></Input >

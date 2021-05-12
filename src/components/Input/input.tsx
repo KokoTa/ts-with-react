@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-05-10 13:49:35
- * @LastEditTime: 2021-05-10 16:09:31
+ * @LastEditTime: 2021-05-12 16:50:59
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Input/input.tsx
@@ -65,9 +65,13 @@ export const Input: React.FC<InputProps> = (props) => {
     'input-group-append': !!append,
   })
 
-  // 当同时传入了 value 和 defaultValue，删除 defaultValue
-  if ('value' in restProps && 'defaultValue' in restProps) {
+  // 受控组件 value + onChange
+  // 非受控组件 defaultValue + ref
+  if ('value' in restProps) {
+    // 删除 defaultValue，否则会有受控和非受控组件的错误
     delete restProps.defaultValue
+    // 当 value 是空值时，需要赋予默认值，否则会有受控和非受控组件的错误
+    if (restProps.value === null || restProps.value === undefined) restProps.value = ''
   }
 
   return (
