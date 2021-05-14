@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-05-13 15:50:53
- * @LastEditTime: 2021-05-14 13:46:18
+ * @LastEditTime: 2021-05-14 17:47:05
  * @LastEditors: KokoTa
  * @Description:
  * @FilePath: /ts-with-react/src/components/Upload/upload.stories.tsx
@@ -37,7 +37,7 @@ const defaultFileList: UploadFile[] = [
     uid: 'a',
     name: 'a.jpg',
     status: 'uploading',
-    percent: 10,
+    percent: 30,
     size: 100
   },
   {
@@ -57,7 +57,7 @@ const defaultFileList: UploadFile[] = [
 ]
 
 DefaultUpload.args = {
-  action: 'https://jsonplaceholder.typicode.com/posts',
+  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   onProgress: action('progress'),
   onSuccess: action('success'),
   onError: action('error'),
