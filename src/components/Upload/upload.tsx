@@ -6,9 +6,21 @@ import UploadList from './uploadList'
 /*
  * @Author: KokoTa
  * @Date: 2021-05-13 13:32:13
- * @LastEditTime: 2021-05-14 15:06:33
+ * @LastEditTime: 2021-05-17 10:43:25
  * @LastEditors: KokoTa
  * @Description:
+ *  基本需求：
+ *  1. 点击按钮选择文件
+ *  2. 选择后上传文件
+ *  3. 上传文件时监听进度
+ *  4. 显示上传文件和上传进度
+ *  需求更新：
+ *  1. 添加自定义 header
+ *  2. 添加自定义 name
+ *  3. 添加自定义 post formData
+ *  4. 选择是否携带 cookie
+ *  5. 添加 input multiple 属性
+ *  6. 添加 input accept 属性
  * @FilePath: /ts-with-react/src/components/Upload/upload.tsx
  */
 
@@ -32,24 +44,45 @@ export interface UploadProps {
   onChange?: (file: File) => void
   defaultFileList?: UploadFile[]
   onRemove: (file: UploadFile) => void
+  headers?: { [key: string]: any }
+  name?: string
+  data?: { [key: string]: any }
+  withCredentials?: boolean
+  accept?: string
+  multiple: boolean
 }
 
 export const Upload: React.FC<UploadProps> = (props) => {
-  const { action, beforeUpload, onProgress, onSuccess, onError, onChange, defaultFileList, onRemove } = props
+  const {
+    action,
+    beforeUpload,
+    onProgress,
+    onSuccess,
+    onError,
+    onChange,
+    defaultFileList,
+    onRemove,
+    name,
+    data,
+    headers,
+    withCredentials,
+    accept,
+    multiple
+  } = props
   const fileInput = useRef<HTMLInputElement>(null)
-  const [fileList, setFileList] = useState<UploadFile[]>(defaultFileList || [])
+  const [fileInfoList, setFileInfoList] = useState<UploadFile[]>(defaultFileList || [])
 
   const handleClick = () => {
     fileInput.current && fileInput.current.click()
   }
 
   const updateFileList = (updateFile: UploadFile, uploadInfo: Partial<UploadFile>) => {
-    setFileList((prevList) => {
-      return prevList.map((file) => {
-        if (file.uid === updateFile.uid) {
-          return { ...file, ...uploadInfo }
+    setFileInfoList((prevList) => {
+      return prevList.map((fileInfo) => {
+        if (fileInfo.uid === updateFile.uid) {
+          return { ...fileInfo, ...uploadInfo }
         }
-        return file
+        return fileInfo
       })
     })
   }
@@ -64,32 +97,42 @@ export const Upload: React.FC<UploadProps> = (props) => {
       percent: 0,
       raw: file
     }
-    setFileList([fileInfo, ...fileList])
+    setFileInfoList((prevList) => [fileInfo, ...prevList])
     // 上传文件
     const formData = new FormData()
-    formData.append(file.name, file)
-    axios.post(action, formData, {
-      // 监听进度
-      onUploadProgress: (e) => {
-        const percentage = Math.round(e.loaded / e.total * 100) || 0
-        if (percentage < 100) {
-          // 更新 state 默认是异步的，因此无法实时获取到 fileList 的值，但可以通过函数的方式获取
-          // console.log(fileList);
-          updateFileList(fileInfo, { percent: percentage, status: 'uploading' })
-          onProgress && onProgress(percentage, file)
+    formData.append(name || file.name, file)
+    if (data) {
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key])
+      })
+    }
+    axios
+      .post(action, formData, {
+        headers,
+        withCredentials,
+        // 监听进度
+        onUploadProgress: (e) => {
+          const percentage = Math.round((e.loaded / e.total) * 100) || 0
+          if (percentage < 100) {
+            // 更新 state 默认是异步的，因此无法实时获取到 fileList 的值，但可以通过函数的方式获取
+            // console.log(fileList);
+            updateFileList(fileInfo, { percent: percentage, status: 'uploading' })
+            onProgress && onProgress(percentage, file)
+          }
         }
-      }
-    }).then((res) => {
-      console.log(res);
-      updateFileList(fileInfo, { status: 'success', response: res.data })
-      onChange && onChange(file)
-      onSuccess && onSuccess(res.data, file)
-    }).catch((err) => {
-      console.log(err);
-      updateFileList(fileInfo, { status: 'error', error: err })
-      onChange && onChange(file)
-      onError && onError(err, file)
-    })
+      })
+      .then((res) => {
+        console.log(res)
+        updateFileList(fileInfo, { status: 'success', response: res.data })
+        onChange && onChange(file)
+        onSuccess && onSuccess(res.data, file)
+      })
+      .catch((err) => {
+        console.log(err)
+        updateFileList(fileInfo, { status: 'error', error: err })
+        onChange && onChange(file)
+        onError && onError(err, file)
+      })
   }
 
   const uploadFiles = (files: FileList) => {
@@ -116,7 +159,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
   }
 
   const handleRemove = (file: UploadFile) => {
-    setFileList((prevList) => {
+    setFileInfoList((prevList) => {
       return prevList.filter((item) => item.uid !== file.uid)
     })
     onRemove && onRemove(file)
@@ -125,10 +168,23 @@ export const Upload: React.FC<UploadProps> = (props) => {
   return (
     <div className="upload">
       <Button onClick={handleClick}>Upload File</Button>
-      <input ref={fileInput} type="file" className="upload-input" style={{ display: 'none' }} onChange={handleChange} />
-      <UploadList fileList={fileList} onRemove={handleRemove}></UploadList>
+      <input
+        ref={fileInput}
+        type="file"
+        className="upload-input"
+        style={{ display: 'none' }}
+        onChange={handleChange}
+        accept={accept}
+        multiple={multiple}
+      />
+      <UploadList fileList={fileInfoList} onRemove={handleRemove}></UploadList>
     </div>
   )
+}
+
+Upload.defaultProps = {
+  name: 'file',
+  withCredentials: false
 }
 
 export default Upload

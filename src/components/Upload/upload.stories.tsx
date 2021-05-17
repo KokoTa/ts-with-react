@@ -1,15 +1,15 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-05-13 15:50:53
- * @LastEditTime: 2021-05-14 17:47:05
+ * @LastEditTime: 2021-05-17 10:38:44
  * @LastEditors: KokoTa
  * @Description:
  * @FilePath: /ts-with-react/src/components/Upload/upload.stories.tsx
  */
 
-import { action } from "@storybook/addon-actions";
-import { Meta, Story } from "@storybook/react";
-import Upload, { UploadFile, UploadProps } from "./upload";
+import { action } from '@storybook/addon-actions'
+import { Meta, Story } from '@storybook/react'
+import Upload, { UploadFile, UploadProps } from './upload'
 
 export default {
   title: 'Component/Upload',
@@ -27,10 +27,10 @@ export const DefaultUpload = Template.bind({})
 //   }
 //   return true
 // }
-const beforeUploadPromise = (file: File) => {
-  const newFile = new File([file], 'name.docx', { type: file.type })
-  return Promise.resolve(newFile)
-}
+// const beforeUploadPromise = (file: File) => {
+//   const newFile = new File([file], 'name.docx', { type: file.type })
+//   return Promise.resolve(newFile)
+// }
 
 const defaultFileList: UploadFile[] = [
   {
@@ -61,8 +61,15 @@ DefaultUpload.args = {
   onProgress: action('progress'),
   onSuccess: action('success'),
   onError: action('error'),
-  beforeUpload: beforeUploadPromise,
+  // beforeUpload: beforeUploadPromise,
   onChange: action('change'),
   defaultFileList,
-  onRemove: action('remove')
+  onRemove: action('remove'),
+  name: 'test file',
+  withCredentials: true,
+  data: {
+    name: 'Brian'
+  },
+  accept: '.jpg',
+  multiple: true
 }
