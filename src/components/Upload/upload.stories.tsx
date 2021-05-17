@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-05-13 15:50:53
- * @LastEditTime: 2021-05-17 10:38:44
+ * @LastEditTime: 2021-05-17 11:41:51
  * @LastEditors: KokoTa
  * @Description:
  * @FilePath: /ts-with-react/src/components/Upload/upload.stories.tsx
@@ -9,6 +9,7 @@
 
 import { action } from '@storybook/addon-actions'
 import { Meta, Story } from '@storybook/react'
+import Button from '../Button/button'
 import Upload, { UploadFile, UploadProps } from './upload'
 
 export default {
@@ -16,7 +17,11 @@ export default {
   component: Upload
 } as Meta
 
-const Template: Story<UploadProps> = (args) => <Upload {...args}></Upload>
+const Template: Story<UploadProps> = (args) => (
+  <Upload {...args}>
+    <Button>Upload File</Button>
+  </Upload>
+)
 
 export const DefaultUpload = Template.bind({})
 
@@ -71,5 +76,6 @@ DefaultUpload.args = {
     name: 'Brian'
   },
   accept: '.jpg',
-  multiple: true
+  multiple: true,
+  drag: true
 }
