@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-05-13 15:50:40
+ * @LastEditTime: 2021-05-17 15:14:19
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/App.tsx
@@ -80,6 +80,11 @@ function App() {
 
         <h1>Input</h1>
         <Input placeholder="hello" prepend="hello" append="world"></Input>
+
+        <h1>Upload</h1>
+        <Upload action="#">
+          <Button>Upload File</Button>
+        </Upload>
       </header>
     </div>
   );

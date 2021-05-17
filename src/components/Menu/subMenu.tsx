@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-28 10:54:31
- * @LastEditTime: 2021-04-30 17:52:31
+ * @LastEditTime: 2021-05-17 14:55:10
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/subMenu.tsx
@@ -55,7 +55,7 @@ const SubMenu: React.FC<ISubMenuProps> = ({ index, title, className, children })
   // 渲染子面板
   const renderChildren = () => {
     const classes = classNames('submenu-item')
-    const childrenElement =  React.Children.map(children, (child, i) => {
+    const childrenElement = React.Children.map(children, (child, i) => {
       const childElement = child as React.FunctionComponentElement<IMenuItemProps>
       const { displayName } = childElement.type
       if (displayName === 'MenuItem') {

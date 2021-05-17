@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-04-27 10:23:03
- * @LastEditTime: 2021-04-29 10:52:11
+ * @LastEditTime: 2021-05-17 15:02:43
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/src/components/Menu/menu.test.tsx
@@ -33,19 +33,21 @@ const MenuTest: React.FC<IMenuProps> = (props) => {
   )
 }
 
-const createStyleFile = () => {
-  const cssFile: string = `
-    .submenu-item {
-      display: none;
-    }
-    .submenu-item.submenu-opened {
-      display: block;
-    }
-  `
-  const style = document.createElement('style')
-  style.innerHTML = cssFile
-  return style
-}
+// 自己实现是通过 display: none/block 来实现动画的，需要添加 CSS 代码来控制显隐
+// react-transition-group 是通过添加和删除节点来控制显隐
+// const createStyleFile = () => {
+//   const cssFile: string = `
+//     .submenu-item {
+//       display: none;
+//     }
+//     .submenu-item.submenu-opened {
+//       display: block;
+//     }
+//   `
+//   const style = document.createElement('style')
+//   style.innerHTML = cssFile
+//   return style
+// }
 
 describe('test menu component', () => {
   let wrapper: RenderResult, menuElement: HTMLElement, activeElement: HTMLElement, disabledElement: HTMLElement
@@ -58,7 +60,7 @@ describe('test menu component', () => {
 
   beforeEach(() => {
     wrapper = render(<MenuTest {...defaultProps}></MenuTest>)
-    wrapper.container.append(createStyleFile())
+    // wrapper.container.append(createStyleFile())
     menuElement = wrapper.getByTestId('test-menu')
     activeElement = wrapper.getByText('active')
     disabledElement = wrapper.getByText('disabled')
@@ -92,17 +94,17 @@ describe('test menu component', () => {
     expect(menuElement).toHaveClass('menu-vertical')
   })
   it('show dropdown items when hover on subMenu', async () => {
-    expect(wrapper.queryByText('dropdown1')).not.toBeVisible() // 需要有 css 支持，测试不会加入样式代码，需要手动加入
+    expect(wrapper.queryByText('dropdown1')).not.toBeInTheDocument()
     const dropdownElement = wrapper.getByText('dropdown')
     fireEvent.mouseEnter(dropdownElement)
-    await waitFor(() => { // 由于代码调用了定时器，所以需要异步
-      expect(wrapper.queryByText('dropdown1')).toBeVisible()
+    await waitFor(() => {
+      expect(wrapper.queryByText('dropdown1')).toBeInTheDocument()
     })
     fireEvent.click(wrapper.getByText('dropdown1'))
     expect(defaultProps.onSelect).toHaveBeenCalledWith("3-0")
     fireEvent.mouseLeave(dropdownElement)
     await waitFor(() => {
-      expect(wrapper.queryByText('dropdown1')).not.toBeVisible()
+      expect(wrapper.queryByText('dropdown1')).not.toBeInTheDocument()
     })
   })
   it('show dropdown items when click on subMenu and mode is vertical', () => {
@@ -112,10 +114,10 @@ describe('test menu component', () => {
       mode: 'vertical'
     }
     wrapper = render(<MenuTest {...props}></MenuTest>)
-    wrapper.container.append(createStyleFile())
+    // wrapper.container.append(createStyleFile())
     const dropdownElement = wrapper.getByText('dropdown')
     fireEvent.click(dropdownElement)
-    expect(wrapper.getByText('dropdown1')).toBeVisible()
+    expect(wrapper.getByText('dropdown1')).toBeInTheDocument()
   })
   it('open dropdown items when defaultOpenSubMenus is supported and mode is vertical', () => {
     cleanup()
@@ -125,7 +127,7 @@ describe('test menu component', () => {
       defaultOpenSubMenus: ["3"]
     }
     wrapper = render(<MenuTest {...props}></MenuTest>)
-    wrapper.container.append(createStyleFile())
-    expect(wrapper.getByText('dropdown1')).toBeVisible()
+    // wrapper.container.append(createStyleFile())
+    expect(wrapper.getByText('dropdown1')).toBeInTheDocument()
   })
 })

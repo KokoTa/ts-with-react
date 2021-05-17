@@ -1,13 +1,12 @@
 import axios from 'axios'
 import { ChangeEvent, useRef, useState } from 'react'
-import Button from '../Button/button'
 import Dragger from './dragger'
 import UploadList from './uploadList'
 
 /*
  * @Author: KokoTa
  * @Date: 2021-05-13 13:32:13
- * @LastEditTime: 2021-05-17 11:51:32
+ * @LastEditTime: 2021-05-17 16:39:28
  * @LastEditors: KokoTa
  * @Description:
  *  基本需求：
@@ -29,7 +28,7 @@ export interface UploadFile {
   uid: string
   size: number
   name: string
-  status?: 'ready' | 'uploading' | 'success' | 'error'
+  status?: 'uploading' | 'success' | 'error'
   percent?: number
   raw?: File
   response?: any
@@ -44,7 +43,7 @@ export interface UploadProps {
   onError?: (err: any, file: File) => void
   onChange?: (file: File) => void
   defaultFileList?: UploadFile[]
-  onRemove: (file: UploadFile) => void
+  onRemove?: (file: UploadFile) => void
   headers?: { [key: string]: any }
   name?: string
   data?: { [key: string]: any }
@@ -95,7 +94,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
     // 文件信息
     const fileInfo: UploadFile = {
       uid: Date.now().toString(),
-      status: 'ready',
+      status: 'uploading',
       name: file.name,
       size: file.size,
       percent: 0,
@@ -171,7 +170,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
 
   return (
     <div className="upload">
-      <div className="upload-btn" onClick={handleClick}>
+      <div className="upload-area" onClick={handleClick}>
         {drag ? (
           <Dragger
             onFile={(fileList: FileList) => {
@@ -181,7 +180,7 @@ export const Upload: React.FC<UploadProps> = (props) => {
             {children}
           </Dragger>
         ) : (
-          { children }
+          <div>{children}</div>
         )}
       </div>
       <input
