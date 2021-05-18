@@ -1,7 +1,7 @@
 /*
  * @Author: KokoTa
  * @Date: 2021-05-06 14:00:37
- * @LastEditTime: 2021-05-11 14:10:20
+ * @LastEditTime: 2021-05-18 17:39:41
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/.storybook/preview.js
@@ -18,6 +18,11 @@ export const parameters = {
     },
     expanded: true
   },
+  options: {
+    storySort: {
+      order: ['Welcome']
+    }
+  }
 }
 
 // 全局装饰器
