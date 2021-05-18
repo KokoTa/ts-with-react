@@ -1,5 +1,8 @@
 {
   "name": "ts-with-react",
+  "main": "./build/index.js",
+  "module": "./build/index.js",
+  "types": "./build/index.d.ts",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
