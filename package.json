@@ -46,12 +46,8 @@
     "build-package": "yarn build-clean && yarn build-ts && yarn build-scss",
     "lint": "eslint --ext js,ts,tsx src",
     "test:nowatch": "cross-env CI=true react-scripts test",
-    "prepublish": "yarn test:nowatch && yarn lint && yarn build-package"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn test:nowatch && yarn lint"
-    }
+    "prepublish": "yarn test:nowatch && yarn lint && yarn build-package",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
