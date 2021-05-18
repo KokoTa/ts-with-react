@@ -1,7 +1,7 @@
 <!--
  * @Author: KokoTa
  * @Date: 2021-04-21 16:29:12
- * @LastEditTime: 2021-05-18 16:33:46
+ * @LastEditTime: 2021-05-18 17:00:54
  * @LastEditors: KokoTa
  * @Description: 
  * @FilePath: /ts-with-react/README.md
@@ -21,6 +21,3 @@
 1. `npm whoami` + `npm adduser`，注意需要使用 npm 的 registry 而不要用代理
 2. `npm publish`
 3. 由于 `npm install [包]` 会下载包中的 dependencies，因此包中的非核心依赖最好放到 devDependencies 中以精简依赖。同时为了解决包和项目中 react 冲突的问题，需要设置 peerDependencies
-
-## 代码规范/单元测试
-
