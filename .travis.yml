@@ -7,4 +7,4 @@ cache:
 env:
   - CI=true
 install:
-  - yarn
+  - yarn install
