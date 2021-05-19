@@ -27,7 +27,8 @@
     "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "node-sass": "^5.0.0"
   },
   "peerDependencies": {
     "react": ">=17.0.2",
@@ -95,7 +96,6 @@
     "@types/react-transition-group": "^4.4.1",
     "cross-env": "^7.0.3",
     "husky": "^6.0.0",
-    "node-sass": "^5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
