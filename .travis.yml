@@ -6,6 +6,8 @@ cache:
     - node_modules
 env:
   - CI=true
+install:
+  - yarn install
 script:
   - yarn build-storybook
 deploy:
